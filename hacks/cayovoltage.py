@@ -110,7 +110,7 @@ def main(bbox):
     im = im.resize((1920,1080))
 
     grayImage = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2GRAY)
-    (thresh, blackAndWhiteImage) = cv2.threshold(grayImage, 127, 255, cv2.THRESH_BINARY)
+    (thresh, blackAndWhiteImage) = cv2.threshold(grayImage, 120, 255, cv2.THRESH_BINARY)
 
     objectivenumber = objective_number(blackAndWhiteImage)
     leftnumbers = left_numbers(blackAndWhiteImage)
