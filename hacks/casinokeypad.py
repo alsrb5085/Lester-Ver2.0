@@ -88,7 +88,6 @@ def calculate(numbers):
             time.sleep(1.95)
 
     print('[*] END')
-    print('=============================================')
 
 def main(bbox):
     print('[*] Casino Keypad Cracker')
@@ -107,10 +106,15 @@ def main(bbox):
     grayImage = cv2.cvtColor(mintimg, cv2.COLOR_RGB2GRAY)
     (thresh, blackAndWhiteImage) = cv2.threshold(grayImage, 215, 255, cv2.THRESH_BINARY)
 
-    numbers = []
+    try:
+        numbers = []
 
-    for a in range(0, 6):
-        numbers.append(dot_check(a, blackAndWhiteImage))
-    
-    check(bbox)
-    calculate(numbers)
+        for a in range(0, 6):
+            numbers.append(dot_check(a, blackAndWhiteImage))
+        
+        check(bbox)
+        calculate(numbers)
+    except KeyError as e:
+        print(f'[!] Cyan pattern not detected. {e} - current resolution {bbox[2]}x{bbox[3]}')
+    finally:
+        print('=============================================')

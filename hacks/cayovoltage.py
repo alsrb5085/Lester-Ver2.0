@@ -81,7 +81,6 @@ def calculate(target_number, left_numbers, right_numbers):
                     raise NotImplementedError
     except:
         print('[*] END')
-        print('=============================================')
 
 def main(bbox):
     print('[*] Cayo Voltage Hack')
@@ -92,22 +91,25 @@ def main(bbox):
     grayImage = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2GRAY)
     (thresh, blackAndWhiteImage) = cv2.threshold(grayImage, 100, 255, cv2.THRESH_BINARY)
     
-    target_number = (
-        (100 * (pixel_check(target_number_length_0, target_number_height, blackAndWhiteImage, DIGITS_LOOKUP)))
-    + (10 * (pixel_check(target_number_length_1, target_number_height, blackAndWhiteImage, DIGITS_LOOKUP)))
-    + pixel_check(target_number_length_2, target_number_height, blackAndWhiteImage, DIGITS_LOOKUP)
-    )
-    left_numbers = [
-        pixel_check(left_number_length, left_number_height_0, blackAndWhiteImage, DIGITS_LOOKUP),
-        pixel_check(left_number_length, left_number_height_1, blackAndWhiteImage, DIGITS_LOOKUP),
-        pixel_check(left_number_length, left_number_height_2, blackAndWhiteImage, DIGITS_LOOKUP)
-    ]
-    right_numbers = [
-        pixel_check(right_symbol_length, right_symbol_height_0, blackAndWhiteImage, RIGHT_SYMBOLS),
-        pixel_check(right_symbol_length, right_symbol_height_1, blackAndWhiteImage, RIGHT_SYMBOLS),
-        pixel_check(right_symbol_length, right_symbol_height_2, blackAndWhiteImage, RIGHT_SYMBOLS)
-    ]
+    try:
+        target_number = (
+            (100 * (pixel_check(target_number_length_0, target_number_height, blackAndWhiteImage, DIGITS_LOOKUP)))
+        + (10 * (pixel_check(target_number_length_1, target_number_height, blackAndWhiteImage, DIGITS_LOOKUP)))
+        + pixel_check(target_number_length_2, target_number_height, blackAndWhiteImage, DIGITS_LOOKUP)
+        )
+        left_numbers = [
+            pixel_check(left_number_length, left_number_height_0, blackAndWhiteImage, DIGITS_LOOKUP),
+            pixel_check(left_number_length, left_number_height_1, blackAndWhiteImage, DIGITS_LOOKUP),
+            pixel_check(left_number_length, left_number_height_2, blackAndWhiteImage, DIGITS_LOOKUP)
+        ]
+        right_numbers = [
+            pixel_check(right_symbol_length, right_symbol_height_0, blackAndWhiteImage, RIGHT_SYMBOLS),
+            pixel_check(right_symbol_length, right_symbol_height_1, blackAndWhiteImage, RIGHT_SYMBOLS),
+            pixel_check(right_symbol_length, right_symbol_height_2, blackAndWhiteImage, RIGHT_SYMBOLS)
+        ]
 
-    print('- ', target_number, left_numbers, right_numbers)
-
-    calculate(target_number, left_numbers, right_numbers)
+        print('- ', target_number, left_numbers, right_numbers)
+        calculate(target_number, left_numbers, right_numbers)
+    except KeyError as e:
+        print(f'[!] Target number not detected. {e} - current resolution {bbox[2]}x{bbox[3]}')
+        print('=============================================')
