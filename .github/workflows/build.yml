@@ -1,5 +1,10 @@
 name: Build
 on:
+  pull_request:
+    branches: [ '**' ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
   push:
     branches: [ '**' ]
     paths-ignore:
@@ -26,10 +31,10 @@ jobs:
 
       - name: Create executable
         run: |
-          pyinstaller --onefile --icon icon.ico main.py
+          pyinstaller --onefile --icon icon.ico -n Lester-VER2.0 main.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with: 
           name: Lester-VER2.0.exe
-          path: dist/main.exe
+          path: dist/Lester-VER2.0.exe
