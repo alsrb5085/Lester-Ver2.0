@@ -1,6 +1,7 @@
 import sys
 import time
 import pynput
+import ctypes
 from threading import Thread
 from win32gui import FindWindow, GetWindowRect
 from hacks import casinofingerprint, casinokeypad, cayofingerprint, cayovoltage
@@ -70,4 +71,5 @@ def main():
             h.join()
 
 if __name__ == "__main__":
+    ctypes.windll.user32.SetProcessDPIAware()
     main()
