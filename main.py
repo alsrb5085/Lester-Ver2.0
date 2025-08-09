@@ -36,6 +36,12 @@ def check_window():
         if hwnd:
             print('[*] Grand Theft Auto V Detected!')
             print('')
+            print('[*] Press F4 for Exit')
+            print('[*] Press F5 for Fingerprint Scanner')
+            print('[*] Press F6 for Keypad Cracker')
+            print('[*] Press F7 for Retro Fingerprint Scanner')
+            print('[*] Press F8 for Voltage Hack')
+            print('')
             print('=============================================')
             return GetWindowRect(hwnd)
         
